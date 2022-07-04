@@ -25,6 +25,12 @@ const App = (props) => {
         setTodos([...fetchedTodos]);
     }
 
+    const editTodo = (id,description,completed) => {
+        props.editAPI(id,description,completed);
+        const fetchedTodos = props.fetchAPI();
+        setTodos([...fetchedTodos]);
+    }
+
     return (
         <div className="todoapp stack-large">
             <div>
@@ -38,7 +44,7 @@ const App = (props) => {
                     aria-labelledby="list-heading"
                     data-testid="todo-list">
                     {todos.map((todo, index) =>
-                        <Todo key={index} id={todo.id} description={todo.description} completed={todo.completed} deleteTodo={deleteTodo}/>
+                        <Todo key={index} id={todo.id} description={todo.description} completed={todo.completed} deleteTodo={deleteTodo} editTodo={editTodo}/>
                     )}
                 </ul>
             </div>
