@@ -2,17 +2,23 @@ import React from "react";
 
 const Form = () => {
 
-    return <form>
-        <div className="row">
-            <div className="col">
-                <textarea data-testid="form-textbox"></textarea>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col">
-               <button className="btn btn-danger" data-testid="form-add-btn">Add</button>
-            </div>
-        </div>
+    return <form data-testid="form">
+        <h2 className="label-wrapper">
+            <label htmlFor="new-todo-input" className="label__lg">
+                What needs to be done?
+            </label>
+        </h2>
+        <input
+            type="text"
+            id="new-todo-input"
+            className="input input__lg"
+            name="text"
+            autoComplete="off"
+            data-testid="form-textbox"
+        />
+        <button type="submit" className="btn btn__primary btn__lg"  data-testid="form-add-btn">
+            Add
+        </button>
     </form>;
 }
 

@@ -15,12 +15,14 @@ describe("Basic Rendering of App component", () => {
         const view = render(<App fetchAPI={mockFetchTodos}/>);
         expect(view.getByTestId("counter")).toHaveTextContent("3 todos displayed");
     });
-});
-
-describe("Basic Functionality of App component", () => {
 
     it("Render Todos", () => {
         const view = render(<App fetchAPI={mockFetchTodos}/>);
         expect(view.getAllByTestId("todo-div")).toHaveLength(3);
+    });
+
+    it("Render Form", () => {
+        const view = render(<App fetchAPI={mockFetchTodos}/>);
+        expect(view.getAllByTestId("form")).toBeDefined();
     });
 });

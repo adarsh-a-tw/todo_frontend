@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Todo from "./Todo";
+import Form from "./Form";
 
 const App = (props) => {
 
@@ -15,9 +16,8 @@ const App = (props) => {
             <div>
                 <center><h1 data-testid="title">Todo App</h1></center>
             </div>
-            <div>
-                <h2 data-testid="counter">{todos.length} todos displayed</h2>
-            </div>
+            <Form />
+            <h4 data-testid="counter">{todos.length} todos displayed</h4>
             <div>
                 <ul role="list"
                     className="todo-list stack-large stack-exception"
@@ -28,6 +28,7 @@ const App = (props) => {
                     )}
                 </ul>
             </div>
+            
         </div>
     );
 }
