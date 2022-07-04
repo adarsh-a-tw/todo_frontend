@@ -8,26 +8,29 @@ const App = (props) => {
 
     const [todos, setTodos] = useState([]);
     useEffect(() => {
-        const fetchedTodos = props.fetchAPI();
-        setTodos(fetchedTodos);
+        async function effect() {
+            const fetchedTodos = await props.fetchAPI();
+            setTodos(fetchedTodos);
+        }
+        effect();
     }, []);
 
-    const addTodo = (data) => {
+    const addTodo = async (data) => {
         const todo = { description: data, completed: false };
-        props.createAPI(todo);
-        const fetchedTodos = props.fetchAPI();
+        await props.createAPI(todo);
+        const fetchedTodos = await props.fetchAPI();
         setTodos([...fetchedTodos]);
     }
 
-    const deleteTodo = (id) => {
-        props.deleteAPI(id);
-        const fetchedTodos = props.fetchAPI();
+    const deleteTodo = async (id) => {
+        await props.deleteAPI(id);
+        const fetchedTodos = await props.fetchAPI();
         setTodos([...fetchedTodos]);
     }
 
-    const editTodo = (id,description,completed) => {
-        props.editAPI(id,description,completed);
-        const fetchedTodos = props.fetchAPI();
+    const editTodo = async (id, description, completed) => {
+        await props.editAPI(id, description, completed);
+        const fetchedTodos = await props.fetchAPI();
         setTodos([...fetchedTodos]);
     }
 
@@ -44,7 +47,7 @@ const App = (props) => {
                     aria-labelledby="list-heading"
                     data-testid="todo-list">
                     {todos.map((todo, index) =>
-                        <Todo key={index} id={todo.id} description={todo.description} completed={todo.completed} deleteTodo={deleteTodo} editTodo={editTodo}/>
+                        <Todo key={index} id={todo.id} description={todo.description} completed={todo.completed} deleteTodo={deleteTodo} editTodo={editTodo} />
                     )}
                 </ul>
             </div>
