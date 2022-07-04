@@ -11,12 +11,19 @@ const App = (props) => {
         const fetchedTodos = props.fetchAPI();
         setTodos(fetchedTodos);
     }, []);
+
+    const addTodo = (data) => {
+        const todo = { description: data, completed: false };
+        props.createAPI(todo);
+        const fetchedTodos = props.fetchAPI();
+        setTodos([...fetchedTodos]);
+    }
     return (
         <div className="todoapp stack-large">
             <div>
                 <center><h1 data-testid="title">Todo App</h1></center>
             </div>
-            <Form />
+            <Form addTodo={addTodo} />
             <h4 data-testid="counter">{todos.length} todos displayed</h4>
             <div>
                 <ul role="list"
@@ -28,7 +35,7 @@ const App = (props) => {
                     )}
                 </ul>
             </div>
-            
+
         </div>
     );
 }
