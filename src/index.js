@@ -4,5 +4,6 @@ import App from './Components/App';
 import './index.css';
 import mockFetchTodos from './mocks/fetchTodos';
 import mockCreateTodo from './mocks/createTodo';
+import mockDeleteTodo from './mocks/deleteTodo';
 
-render(<App fetchAPI={mockFetchTodos}  createAPI={mockCreateTodo}/>, document.getElementById('app'));
+render(<App fetchAPI={mockFetchTodos}  createAPI={mockCreateTodo} deleteAPI={mockDeleteTodo}/>, document.getElementById('app'));
