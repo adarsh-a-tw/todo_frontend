@@ -3,13 +3,11 @@ import axios from "axios";
 const fetchAPI = async () => {
 
     var config = {
-        method: 'get',
-        url: 'http://localhost:8080/todos',
         headers: {}
     };
 
     try {
-        const response = await axios(config);
+        const response = await axios.get('http://localhost:8080/todos', config);
         return response.data;
     } catch (error) {
         console.log(error);
@@ -22,16 +20,13 @@ const createAPI = async (todo) => {
     var data = JSON.stringify(todo);
 
     var config = {
-        method: 'post',
-        url: 'http://localhost:8080/todos',
         headers: {
             'Content-Type': 'application/json'
-        },
-        data: data
+        }
     };
 
     try {
-        await axios(config);
+        await axios.post('http://localhost:8080/todos', data, config);
     } catch (error) {
         console.log(error);
     };
@@ -45,18 +40,13 @@ const editAPI = async (id, description, completed) => {
     });
 
     var config = {
-        method: 'put',
-        url: `http://localhost:8080/todos/${id}`,
         headers: {
             'Content-Type': 'application/json'
-        },
-        data: data
+        }
     };
 
-    console.log(config)
-
     try {
-        await axios(config);
+        await axios.put(`http://localhost:8080/todos/${id}`, data, config);
     } catch (error) {
         console.log(error);
     };
@@ -66,13 +56,11 @@ const editAPI = async (id, description, completed) => {
 const deleteAPI = async (id) => {
 
     var config = {
-        method: 'delete',
-        url: `http://localhost:8080/todos/${id}`,
         headers: {}
     };
 
     try {
-        await axios(config);
+        await axios.delete(`http://localhost:8080/todos/${id}`, config);
     } catch (error) {
         console.log(error);
     };

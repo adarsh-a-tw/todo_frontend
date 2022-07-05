@@ -1,37 +1,36 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import api from "../api/Api";
 import Todo from "./Todo";
 import Form from "./Form";
 
-const App = (props) => {
+const App = () => {
 
     const [todos, setTodos] = useState([]);
     useEffect(() => {
-        async function effect() {
-            const fetchedTodos = await props.fetchAPI();
-            setTodos(fetchedTodos);
-        }
-        effect();
+        fetchTodos();
     }, []);
+
+    const fetchTodos = async () => {
+        const fetchedTodos = await api.fetchAPI();
+        setTodos([...fetchedTodos]);
+    }
 
     const addTodo = async (data) => {
         const todo = { description: data, completed: false };
-        await props.createAPI(todo);
-        const fetchedTodos = await props.fetchAPI();
-        setTodos([...fetchedTodos]);
+        await api.createAPI(todo);
+        fetchTodos();
     }
 
     const deleteTodo = async (id) => {
-        await props.deleteAPI(id);
-        const fetchedTodos = await props.fetchAPI();
-        setTodos([...fetchedTodos]);
+        await api.deleteAPI(id);
+        fetchTodos();
     }
 
     const editTodo = async (id, description, completed) => {
-        await props.editAPI(id, description, completed);
-        const fetchedTodos = await props.fetchAPI();
-        setTodos([...fetchedTodos]);
+        await api.editAPI(id, description, completed);
+        fetchTodos();
     }
 
     return (
